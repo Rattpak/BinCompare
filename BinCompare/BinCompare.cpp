@@ -24,7 +24,6 @@ std::vector<std::string> formatSkipList(char* arr[], int size) {
             int split = converted[i].find('-');
             formatted.push_back(converted[i].substr(2, split-2));
             formatted.push_back(converted[i].substr(split+3, converted[i].size()-(split+3)));
-            std::cout << formatted[0] << " : " << formatted[1] << std::endl;
         }
     }
     return formatted;
@@ -39,8 +38,8 @@ int main(int argc, char* argv[])
         return 1;
     }
     std::vector<std::string> fVector = formatSkipList(argv, argc);
-    for (size_t i = 0; i < fVector.size(); ++i) {
-        std::cout << "index " << i << ": " << fVector[i] << std::endl;
+    for (size_t i = 0; i < fVector.size(); i+=2) {
+        std::cout << fVector[i] << " : " << fVector[i+1] << std::endl;
     }
     std::ifstream file1(argv[1], std::ios::binary), file2(argv[2], std::ios::binary);
 
