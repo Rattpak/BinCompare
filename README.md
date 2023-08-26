@@ -12,3 +12,9 @@ Example:
 
 ## Preview
 ![Preview of programs current output](https://drive.google.com/uc?id=19309uMdOwsheXRKaCBGksVhN6e7o0neL)
+
+## TODO
+- verbose arg for more detailed output
+- arg error checking
+- nocolor arg for any unsupported CLI
+- probably some other stuff
