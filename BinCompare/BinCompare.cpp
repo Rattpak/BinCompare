@@ -33,14 +33,17 @@ std::vector<std::string> formatSkipList(char* arr[], int size) {
 int main(int argc, char* argv[])
 {
     //file1, file2, skipranges...
+    bool verbose = false;
     if (argc < 2) {//TODO better arg checks
         std::cout << "Usage <file1> <file2> <skipranges...>" << std::endl;
         std::cout << "Example: \"file1.bin\" \"file2.bin\" 0x3907-0x4D97 0x9136-0x9A38" << std::endl;
         return 1;
     }
     std::vector<std::string> fVector = formatSkipList(argv, argc);
-    for (size_t i = 0; i < fVector.size(); i+=2) {
-        std::cout << fVector[i] << " : " << fVector[i+1] << std::endl;
+    if (verbose) {
+        for (size_t i = 0; i < fVector.size(); i += 2) {
+            std::cout << fVector[i] << " : " << fVector[i + 1] << std::endl;
+        }
     }
     std::ifstream file1(argv[1], std::ios::binary), file2(argv[2], std::ios::binary);
 
