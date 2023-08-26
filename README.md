@@ -9,3 +9,6 @@ Arguments:
 
 Example:
 `BinCompare.exe "path_to_file1.bin" "path_to_file2.bin" 0x3907-0x4D96 0xE859D-0xEBBFB`
+
+## Preview
+![Preview of programs current output](https://drive.google.com/uc?id=19309uMdOwsheXRKaCBGksVhN6e7o0neL)
