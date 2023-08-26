@@ -1,1 +1,1 @@
-BinCompare.exe "C:\Users\rattp\Documents\~Skate 3 Skaters\testing\default no save\SKATER.P" "C:\Users\rattp\Documents\~Skate 3 Skaters\testing\default with save\SKATER.P" 0xA115-0xD935 0xF324-0xF400
+BinCompare.exe "C:\Users\rattp\Documents\~Skate 3 Skaters\testing\default no save\SKATER.P" "C:\Users\rattp\Documents\~Skate 3 Skaters\testing\default with save\SKATER.P" 0x3907-0x4D97 0xE859D-0xEBBFB

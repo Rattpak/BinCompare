@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <vector>
 #include <string>
+#include <sstream>
 #include "color.h"
 
 void printHexFormatted(byte b1, byte b2) {
@@ -34,7 +35,7 @@ int main(int argc, char* argv[])
     //file1, file2, skipranges...
     if (argc < 2) {//TODO better arg checks
         std::cout << "Usage <file1> <file2> <skipranges...>" << std::endl;
-        std::cout << "Example: \"file1.bin\" \"file2.bin\" 0x3907-0x4D97 0x9136-0x9738" << std::endl;
+        std::cout << "Example: \"file1.bin\" \"file2.bin\" 0x3907-0x4D97 0x9136-0x9A38" << std::endl;
         return 1;
     }
     std::vector<std::string> fVector = formatSkipList(argv, argc);
@@ -53,14 +54,23 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    char byte1, byte2;
-    std::streampos address = 0;
+    char byte1, byte2; 
     while (file1.read(&byte1, 1) && file2.read(&byte2, 1)) {
+        for (int i = 0; i < fVector.size(); i += 2) {
+            if (file1.tellg().operator-(1) == std::stoi(fVector[i], nullptr, 16)) {
+                std::cout << dye::aqua("[Skipping from ") << dye::aqua(fVector[i]) << dye::aqua(" to ") << dye::aqua(std::stoul(fVector[i + 1], nullptr, 16)) << dye::aqua("]") << std::endl;
+                file1.seekg(std::stoul(fVector[i + 1], nullptr, 16) + 1);
+                file2.seekg(std::stoul(fVector[i + 1], nullptr, 16) + 1);
+                file1.read(&byte1, 1);
+                file2.read(&byte2, 1);
+            }
+        }
+        //get bytes again here before end of loop
+
         if (byte1 != byte2) {
-            std::cout << dye::yellow("Byte mismatch") << " @ 0x" << address << "\t";
+            std::cout << dye::yellow("Byte mismatch") << " @ 0x" << file1.tellg().operator-(1) << "\t";
             printHexFormatted(byte1, byte2);
         }
-        address += 1;
     }
     file1.close();
     file2.close();
