@@ -13,42 +13,21 @@ void printHexFormatted(byte b1, byte b2) {
 }
 
 std::vector<std::string> formatSkipList(char* arr[], int size) {
-    std::vector<std::string> result;
-
+    std::vector<std::string> converted;
     for (int i = 0; i < size; ++i) {
-        std::string str(arr[i]);
-
-        //check if string starts with 0x
-        if (str.substr(0, 2) == "0x" && str.find('-') != std::string::npos) {
-            size_t dashPos = str.find('-');
-            std::string hex1 = str.substr(2, dashPos - 2);
-            std::string hex2 = str.substr(dashPos + 1);
-
-            //check for valid hexadecimal
-            bool validHex = true;
-            for (char c : hex1) {
-                if (!isxdigit(c)) {
-                    validHex = false;
-                    break;
-                }
-            }
-            for (char c : hex2) {
-                if (!isxdigit(c)) {
-                    validHex = false;
-                    break;
-                }
-            }
-
-            if (validHex) {
-                result.push_back(hex1);
-                result.push_back(hex2);
-            }
-            else {
-                std::cout << "Invalid hexadecimal format: " << str << std::endl;
-            }
+        std::string arg(arr[i]);
+        converted.push_back(arg);
+    }
+    std::vector<std::string> formatted;
+    for (int i = 0; i < size; i++) {
+        if (converted[i].substr(0, 2) == "0x") {
+            int split = converted[i].find('-');
+            formatted.push_back(converted[i].substr(2, split-2));
+            formatted.push_back(converted[i].substr(split+3, converted[i].size()-(split+3)));
+            std::cout << formatted[0] << " : " << formatted[1] << std::endl;
         }
     }
-    return result;
+    return formatted;
 }
 
 int main(int argc, char* argv[])
