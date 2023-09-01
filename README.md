@@ -1,4 +1,4 @@
-![](https://drive.google.com/uc?id=1iU6fzWHAfoWgrfuJr0rPQp3K499JxbeE)
+![](https://drive.google.com/uc?id=1qyLsmc5PVR0_f2ZXxHjGmzNEMtyGFf6P)
 A command-line tool for comparing binary files, pinpointing differences down to the byte level. Features address range exemption for focused comparisons. Ideal for developers and analysts.
 
 ## Usage
